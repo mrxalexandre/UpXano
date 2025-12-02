@@ -1,0 +1,5 @@
+{
+  "name": "Gestor de Importação CSV",
+  "description": "Uma ferramenta simples e amigável para importar dados de inventário via CSV para o Xano.",
+  "requestFramePermissions": []
+}
