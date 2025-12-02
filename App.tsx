@@ -6,7 +6,7 @@ import InventoryList from './components/InventoryList';
 import { parseCSV } from './utils/csvParser';
 import { uploadItem, getInventory, deleteItem } from './services/api';
 import { InventoryItem, InventoryRecord, UploadStatus } from './types';
-import { Send, Database, AlertCircle, Info, Upload, List, FileDown } from 'lucide-react';
+import { Send, Database, AlertCircle, Info, Upload, List, FileDown, ExternalLink } from 'lucide-react';
 
 type Tab = 'import' | 'manage';
 
@@ -197,33 +197,44 @@ const App: React.FC = () => {
             <div className="bg-blue-600 p-2 rounded-lg text-white">
               <Database className="w-5 h-5" />
             </div>
-            <h1 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-blue-500">
+            <h1 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-blue-500 hidden sm:block">
               Gestor de Inventário
             </h1>
           </div>
-          <div className="flex bg-slate-100 p-1 rounded-lg">
-            <button
-              onClick={() => setActiveTab('import')}
-              className={`flex items-center gap-2 px-4 py-1.5 rounded-md text-sm font-medium transition-all ${
-                activeTab === 'import' 
-                  ? 'bg-white text-blue-600 shadow-sm' 
-                  : 'text-slate-500 hover:text-slate-700'
-              }`}
+          
+          <div className="flex items-center gap-3">
+            <a
+              href="https://caltecnologia.com.br/ivt_home/"
+              className="flex items-center gap-2 px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-lg shadow-sm transition-all hover:shadow-md active:scale-95 text-sm"
             >
-              <Upload className="w-4 h-4" />
-              Importar
-            </button>
-            <button
-              onClick={() => setActiveTab('manage')}
-              className={`flex items-center gap-2 px-4 py-1.5 rounded-md text-sm font-medium transition-all ${
-                activeTab === 'manage' 
-                  ? 'bg-white text-blue-600 shadow-sm' 
-                  : 'text-slate-500 hover:text-slate-700'
-              }`}
-            >
-              <List className="w-4 h-4" />
-              Gerenciar
-            </button>
+              Ir para Inventário
+              <ExternalLink className="w-4 h-4" />
+            </a>
+
+            <div className="flex bg-slate-100 p-1 rounded-lg">
+              <button
+                onClick={() => setActiveTab('import')}
+                className={`flex items-center gap-2 px-4 py-1.5 rounded-md text-sm font-medium transition-all ${
+                  activeTab === 'import' 
+                    ? 'bg-white text-blue-600 shadow-sm' 
+                    : 'text-slate-500 hover:text-slate-700'
+                }`}
+              >
+                <Upload className="w-4 h-4" />
+                <span className="hidden sm:inline">Importar</span>
+              </button>
+              <button
+                onClick={() => setActiveTab('manage')}
+                className={`flex items-center gap-2 px-4 py-1.5 rounded-md text-sm font-medium transition-all ${
+                  activeTab === 'manage' 
+                    ? 'bg-white text-blue-600 shadow-sm' 
+                    : 'text-slate-500 hover:text-slate-700'
+                }`}
+              >
+                <List className="w-4 h-4" />
+                <span className="hidden sm:inline">Gerenciar</span>
+              </button>
+            </div>
           </div>
         </div>
       </header>
