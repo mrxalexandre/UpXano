@@ -121,8 +121,7 @@ const App: React.FC = () => {
     });
     setShowModal(true);
 
-    // Reduced concurrency from 5 to 1 to prevent 429 Rate Limit errors on Xano Free Tier.
-    // Xano often limits to 10 requests / 10 seconds on free plans.
+    // Concurrency limit set to 1 for serial processing
     const CONCURRENCY_LIMIT = 1; 
     let currentIndex = 0;
 
@@ -148,8 +147,11 @@ const App: React.FC = () => {
         while (currentIndex < items.length) {
           const index = currentIndex++;
           await processItem(index);
-          // Optional: Add small delay between items if strict serial processing (concurrency=1) is still too fast
-          // await new Promise(r => setTimeout(r, 200)); 
+          
+          // Wait 0.5 seconds (500ms) between requests
+          if (currentIndex < items.length) {
+            await new Promise(resolve => setTimeout(resolve, 500));
+          }
         }
       });
 
