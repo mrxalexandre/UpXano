@@ -148,9 +148,9 @@ const App: React.FC = () => {
           const index = currentIndex++;
           await processItem(index);
           
-          // Wait 0.5 seconds (500ms) between requests
+          // Wait 2.05 seconds (2050ms) between requests
           if (currentIndex < items.length) {
-            await new Promise(resolve => setTimeout(resolve, 500));
+            await new Promise(resolve => setTimeout(resolve, 2050));
           }
         }
       });
