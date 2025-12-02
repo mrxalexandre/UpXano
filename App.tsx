@@ -180,6 +180,11 @@ const App: React.FC = () => {
   const closeModal = () => {
     if (!uploadStatus.isProcessing) {
       setShowModal(false);
+      
+      // Redirect ONLY if the operation was an upload
+      if (uploadStatus.type === 'upload') {
+        window.location.href = "https://caltecnologia.com.br/ivt_home/";
+      }
     }
   };
 
